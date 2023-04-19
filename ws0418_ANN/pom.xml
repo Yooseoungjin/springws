@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.kbstar</groupId>
-    <artifactId>ws0418_XML</artifactId>
+    <artifactId>ws0418_ANN</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -78,7 +78,6 @@
             <version>${org.aspectj-version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjtools</artifactId>
@@ -91,17 +90,5 @@
             <version>${org.aspectj-version}</version>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>7</source>
-                    <target>7</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
