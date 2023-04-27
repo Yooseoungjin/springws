@@ -1,6 +1,5 @@
 package com.kbstar.service;
 
-import com.kbstar.dto.Adm;
 import com.kbstar.dto.Marker;
 import com.kbstar.frame.KBService;
 import com.kbstar.mapper.MarkerMapper;
@@ -41,6 +40,11 @@ public class MarkerService implements KBService<Integer, Marker> {
     public Marker get(Integer integer) throws Exception {
         return  mapper.select(integer); // int id값 넣으면 조회해주겠다.. dao에서;
     }
+
+    public List<Marker> get(String string) throws Exception {
+        return  mapper.select(string);
+    }
+
 
     @Override
     public List<Marker> get() throws Exception {

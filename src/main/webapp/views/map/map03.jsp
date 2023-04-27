@@ -15,16 +15,17 @@
         init:function (){
             this.display();
             $('#s_btn').click(function (){
-                map03.go(37.5215695,126.9243115,'s');
+                map03.go(37.5215695,126.9243115,'S');
             });
             $('#b_btn').click(function (){
-                map03.go(37.557527,126.9244669,'b');
+                map03.go(37.557527,126.9244669,'B');
             });
             $('#j_btn').click(function (){
-                map03.go(33.4853707,126.4815713,'j');
+                map03.go(33.4853707,126.4815713,'J');
             });
         },
         display:function (){
+
             var mapContainer = document.querySelector('#map03 > #map');
             var mapOption = {
                 center: new kakao.maps.LatLng(37.5192199, 126.9271762), // 지도의 중심좌표
@@ -42,6 +43,7 @@
                 position: markerPosition
             });
             marker.setMap(map);
+
         },
         go:function (lat,lng,loc){
             var moveLatLon = new kakao.maps.LatLng(lat,lng);
@@ -55,6 +57,7 @@
             map03.markers(loc);
         },
         markers:function (loc){
+
             $.ajax({
                url:'/markers',
                data:{'loc':loc},

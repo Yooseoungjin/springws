@@ -1,9 +1,11 @@
 package com.kbstar.controller;
 
 import com.kbstar.dto.Cust;
+import com.kbstar.service.CustService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +16,12 @@ import java.util.Random;
 
 @Slf4j /*로그 찍는 골뱅이*/
 @Controller
+
+
 @RequestMapping("/cust") // /cust를 넣음으으로 기본적으로 주소에 /cust가 셋팅됨
 public class CustController {
+    @Autowired
+    CustService service;
 
     // Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
     String dir = "cust/"; //폴더명을 변수로 넣기
@@ -39,14 +45,15 @@ public class CustController {
     }
 
     @RequestMapping("/all")
-    public String all(Model model){
-        List<Cust> list = new ArrayList<>();
-        list.add(new Cust("id01","pwd01","james1"));
-        list.add(new Cust("id02","pwd02","james2"));
-        list.add(new Cust("id03","pwd03","james3"));
-        list.add(new Cust("id04","pwd04","james4"));
-        list.add(new Cust("id05","pwd05","james5"));
 
+    public String all(Model model) {
+        List<Cust> list = new ArrayList<>();
+        try {
+            list = service.get();
+        } catch (Exception e) {
+            log.info("조회 에러......");
+            e.printStackTrace();
+        }
         model.addAttribute("clist", list);
         model.addAttribute("left",dir+"left");
         model.addAttribute("center",dir+"all");
@@ -55,7 +62,13 @@ public class CustController {
 
     @RequestMapping("/get")
     public String get(Model model,String id){
-        Cust cust = new Cust(id,"xxx","james");
+        Cust cust = new Cust();
+        try {
+            cust = service.get(id);
+        } catch (Exception e) {
+            log.info("조회 에러......");
+            e.printStackTrace();
+        }
         model.addAttribute("gcust",cust);
         model.addAttribute("left",dir+"left");
         model.addAttribute("center",dir+"get");
