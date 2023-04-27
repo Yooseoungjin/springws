@@ -1,7 +1,7 @@
-package com.kbstar.cust;
+package com.kbstar.adm;
 
-import com.kbstar.dto.Cust;
-import com.kbstar.service.CustService;
+import com.kbstar.dto.Adm;
+import com.kbstar.service.AdmService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +13,15 @@ import org.springframework.dao.DuplicateKeyException;
 class InsertTest {
 
     @Autowired
-    CustService service;
+    AdmService service;
     @Test
     void contextLoads() {
-        Cust obj = new Cust("id09","pwd03","심말숙");
+        Adm obj = new Adm("admin04","pwd04",1);
         try {
             service.register(obj);
             log.info("등록이 되었다");
-            service.get();
         } catch (Exception e) {
-            log.info("등록 에러......");
+            log.info("등록 에러........................................");
             e.printStackTrace();
             if (e instanceof DuplicateKeyException) {
                 log.info("ID가 중복되었습니다------------------------------------------------");
